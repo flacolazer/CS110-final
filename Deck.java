@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 public class Deck
 {
+LinkedList<Card> player1Cards;
+LinkedList<Card> player2Cards;
+List<Card> deck;
 public Deck()
 {
  //this creates a deck
-             List<Card> deck = new ArrayList<Card>();
+             deck = new ArrayList<Card>();
          
              for ( int i = 0; i < 4; i++ ) {
                for ( int j = 2; j < 15; j++ ) {
@@ -22,11 +25,11 @@ public Deck()
              Collections.shuffle(deck, new Random(System.nanoTime()));
          
          // adds cards to player's hands
-             LinkedList<Card> player1Cards = new LinkedList<Card>();
-             player1Cards.addAll( deck.subList(0,25));
-         
-             LinkedList<Card> player2Cards = new LinkedList<Card>();
-             player2Cards.addAll(deck.subList(26,deck.size()));
+             player1Cards = new LinkedList<Card>();
+             player1Cards.addAll(deck.subList(0,25));
+             
+        player2Cards = new LinkedList<Card>();
+            player2Cards.addAll(deck.subList(26,deck.size()));
              
 }
 }

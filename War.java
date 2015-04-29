@@ -5,23 +5,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class War {
+public class War  {
    Deck deck;
+   LinkedList<Card> player1Cards;
+   LinkedList<Card> player2Cards;
+
   public War(){
-   char response;
    deck = new Deck();
+     
   
-      System.out.println("Battle? (y/n)");
-    Scanner input = new Scanner(System.in);
-    
-    response = input.next().charAt(0);
-
-
-    while (player1Cards.size() != 0 && player2Cards.size() !=0) {
+  
+  //  while (player1Cards.size() != 0 && player2Cards.size() !=0) {
         
-    while (response != 'n')
-    {    
-    
+ }
+       
+  public void Battle()
+  {  
    //while they still have cards, pop the top
       Card player1Card = player1Cards.pop();
       Card player2Card = player2Cards.pop();
@@ -65,26 +64,25 @@ public class War {
           System.out.println( "Player 2 wins the war" );
         }
       }
-      System.out.println("Battle??");
-      response = input.next().charAt(0);
-
-      }
-      
-      
-//check hand size
-      if (player1Cards.size() == 0) {
-        System.out.println( "Player 1 wins!" );
-        break;
-      } else if (player2Cards.size() == 0) {
-        System.out.println( "Player 2 wins!" );
-        break;
-        }
-        else {
-        System.out.println("Game ended early");
-        break;
-        }
-        
-      }
-    }
-  
+ 
 }
+}     
+      
+ 
+//      
+// //check hand size
+//       if (player1Cards.size() == 0) {
+//         System.out.println("Player 1 wins!");
+//         break;
+//       } else if (player2Cards.size() == 0) {
+//         System.out.println("Player 2 wins!");
+//         break;
+//         }
+//         else {
+//         System.out.println("Game ended early");
+//         break;
+//         }
+//         
+       
+    
+  
