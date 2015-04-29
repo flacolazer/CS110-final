@@ -58,12 +58,14 @@ public WarGUItest()
     buildCardsPanel();
     add(cardsPanel, BorderLayout.CENTER);
 
-   
+    
     setVisible(true);
 
     
     }
-
+   
+    
+    
     private void buildButtonPanel(){
         //battle button
         playCardButton = new JButton("Battle!");
@@ -124,20 +126,88 @@ public WarGUItest()
 
        private class PlayCardListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+        int y = 6;
+        LinkedList<Card> player1Cards = new LinkedList<Card>();
+        LinkedList<Card> player2Cards = new LinkedList<Card>();
+   while (y == 6){
+           //this creates a deck
+    List<Card> deck = new ArrayList<Card>( );
 
-                 game.Battle();
+    for ( int i = 0; i < 4; i++ ) {
+      for ( int j = 2; j < 15; j++ ) {
+        deck.add( new Card( i, j ) );
+      }
+    }
+   
+   //shuffles the deck
+    Collections.shuffle( deck, new Random( System.nanoTime( ) ) );
+
+// adds cards to player's hands
+     player1Cards = new LinkedList<Card>( );
+    player1Cards.addAll( deck.subList( 0, 25 ) );
+
+     player2Cards = new LinkedList<Card>( );
+    player2Cards.addAll( deck.subList( 26, deck.size( ) ) );
+    y = 7;
+    }
              
-        
-                 // player1CardPicture = player1Card.toString();
-//                  playerCard = new ImageIcon(player1CardPicture);
-//                  playerCardLabel.setIcon(playerCard);
-//                      
-//                  player2CardPicture = player2Card.toString();    
-//                  computerCard = new ImageIcon(player2CardPicture.toString());
-//                  computerCardLabel.setIcon(computerCard);
-// 
+           //  while (player1Cards.size() != 0 && player2Cards.size() !=0) {
+    
+            //while they still have cards, pop the top
+               Card player1Card = player1Cards.pop();
+               Card player2Card = player2Cards.pop();
+         
+               System.out.println("Player 1: " + player1Card.toString());
+               System.out.println("Player 2: " + player2Card.toString());
                
-                  
+                 player1CardPicture = player1Card.toString();
+                 playerCard = new ImageIcon(player1CardPicture);
+                 playerCardLabel.setIcon(playerCard);
+                     
+                 player2CardPicture = player2Card.toString();    
+                 computerCard = new ImageIcon(player2CardPicture.toString());
+                 computerCardLabel.setIcon(computerCard);
+
+               
+                  //battle, player 1 wins
+                     if (player1Card.getCard() > player2Card.getCard())
+                     {
+                       player1Cards.addLast(player2Card);
+                       player1Cards.addLast(player1Card);
+                     //battle, p2 wins
+                     } else if (player1Card.getCard() < player2Card.getCard()) 
+                     {
+                       player2Cards.addLast(player2Card);
+                       player2Cards.addLast(player1Card);
+                     } else {
+                     // WAR occurs
+                       System.out.println("War");
+                       List<Card> warCards1 = new ArrayList<Card>();
+                       List<Card> warCards2 = new ArrayList<Card>();
+                       for ( int i = 0; i < 3; i++ ) {
+                         if(player1Cards.size()==0 || player2Cards.size()==0)
+                         {
+                           break;
+                         }
+                         warCards1.add( player1Cards.pop());
+                         warCards2.add( player2Cards.pop());
+                       }
+                       
+                       System.out.println("Player 1 war: " + warCards1.get(0).toString( ));
+                       System.out.println("Player 2 war: " + warCards2.get(0).toString());
+                       if ( warCards1.get( 0 ).getCard( ) > warCards2.get(0).getCard()) 
+                       {
+                         player1Cards.addAll(warCards2);
+                         player1Cards.addAll(warCards1);
+                         System.out.println( "Player 1 wins the war" );
+                       } else {
+                         player2Cards.addAll(warCards2);
+                         player2Cards.addAll(warCards1);
+                         System.out.println( "Player 2 wins the war" );
+                       }
+                     }
+
+
 }
       }    
         
